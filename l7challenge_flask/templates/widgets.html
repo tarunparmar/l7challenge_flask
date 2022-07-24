@@ -1,0 +1,40 @@
+{% extends 'layouts.html'%}
+
+{%block content%}
+<br/><br/>
+<div class="mx-auto" style="width: 1000px;">
+<p>
+Challenge: Widgets
+</p>
+1) What you think this system does ?<br/>
+<p style="color:blue;">
+For the given data, the schema is probably of a wholesale store selling pesticides. The system has information on pricing of the widget being sold and its inventory details.<br/>
+It also had details of customers as well as suppliers and the quantity. The data itself seems transactional on purchases and current inventory of the widget item <br/><br/>
+</p>
+
+2) What you feel would be a reasonable database structure for the data and a reasonable architecture for the system ?<br/>
+<div class="bd-example" align="middle">
+    <img src="{{url_for('static', filename='widgets.png')}}" align="middle" style="width:1000px;height:400px;"/>
+</div><br/>
+<p style="color:blue;">
+I would apply Third Normal Form (3NF) considering the relation between customer, supplier, warehouse, product, pricing and inventory tables to normalize the data and to reduce duplication of data.<br/>
+The pricing can further be categorized based on widget-supplier availability and inventory can be setup by daily tracking of widgets by supplier and warehouse. <br/>
+From left to right, I created look ups of widgets, customers, widget-supplier combination (multiple suppliers may be selling a particular widget), 
+widget-packaging and warehouse. <br/>
+Moreover, the qty and min_qty columns can also be further setup into something that can lead to inventory tracking.
+<div class="bd-example" align="middle">
+    <img src="{{url_for('static', filename='widgets_tbls.png')}}" align="middle" style="width:1000px;height:150px;"/>
+</div><br/>
+</p>
+
+3) Any questions or concerns you have regarding this dataset/system that might need to be answered before establishing an ideal database/solution for such a system. <br/><br/>
+<p style="color:blue;">
+If the given data is about customer purchases then I think it is missing timestamps, is that so ?
+
+What are the price and cost columns ? Are these price the customer paid and cost to company to source the widget ?
+
+How often is the inventory updated ? This may help the customer see inventory live through the system.
+</p>
+</div>
+
+{%endblock content%}

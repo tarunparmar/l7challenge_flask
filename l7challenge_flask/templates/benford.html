@@ -1,0 +1,71 @@
+{% extends 'layouts.html'%}
+
+{%block content%}
+<br/><br/>
+<div class="mx-auto" style="width: 1000px;">
+<p>
+Challenge: Benford's Law <br/><br/>
+In 1938, Frank Benford published a paper showing the distribution of the leading digit in many disparate sources of data. In all these sets of data, the number 1 was the leading digit about 30% of the time. Benford’s law has been found to apply to population numbers, death rates, lengths of rivers, mathematical distributions given by some power law, and physical constants like atomic weights and specific heats.
+
+Create a python-based web application (use of tornado or flask is fine) that <br/><br/>
+1) can ingest the attached example file (census_2009b) and any other flat file with a viable target column. Note that other columns in user-submitted files may or may not be the same as the census data file and users are known for submitting files that don't always conform to rigid expectations. How you deal with files that don't conform to the expectations of the application is up to you, but should be reasonable and defensible.<br/>
+
+<p style="color:blue;">
+Created an app to model given census_2009b data and apply Benford’s Law. The app is created using <a href="https://streamlit.io/" target="_blank">Streamlit</a> (it's a tornado based framework and uses websockets to host python coded apps similar to Flask or Django).<br/>
+It has some datasets already link and also allows user uploaded dataset to be overlayed with given census dataset.<br/>
+The code checks if selected target column is numeric or not. If it is numeric then it will process the data and display a visualization. <br/>
+If not, then it will display an error show column is not numeric. <br/><br/>
+I have linked two more datasets to the app just for fun and validation Benford's Law.<br/>
+
+<a href="https://tarunparmar-benford-app-app-yxl29t.streamlitapp.com/" target="_blank">App Link (Hosted on Strealit server)</a><br/><br/>
+<a href="https://github.com/tarunparmar/benford_app" target="_blank">App Code (Posted on Github)</a><br/><br/>
+
+The app has a few built in datasets that assess numeric columns and validate actual vs expected count to validate Benford's Law. 
+The validation is done by Chi-Sq statistical test method to provide an easy way to user to guage if the actual vs expected is matched or not.
+<div class="bd-example" align="middle">
+    <img src="{{url_for('static', filename='stat_test.png')}}" align="middle" style="width:500px;height:300px;"/>
+</div><br/>
+
+</p>
+
+2) validates Benford’s assertion based on the '7_2009' column in the supplied file<br/><br/>
+
+<p style="color:blue;">
+    Benford's law is grounded on base-10 logarithms that calculate the probability that number x will begin with digit d if log10(x) lies in the interval of length log10(d+1) - log10(d) = log10(1+1/d). When plugging in the digits 1 through 9, each subsequent digit has a diminishing probability that it will be the leading digit.<br/><br/>
+    The numbers in a dataset that fits all the Benford assumptions should follow this distribution of leading digits, with 1 being the most common and 9 being the least.
+    For a conclusion on a Benford curve to be valid, the data must (1) be numeric, (2) be randomly generated, (3) be large, and (4) represent magnitudes of events. <br/><br/>
+
+</p>
+<div class="bd-example" align="middle">
+    <img src="{{url_for('static', filename='applying_bl_to_census_data.png')}}" align="middle" style="width:500px;height:400px;"/>
+</div><br/>
+<p style="color: blue;">
+    The above graph (output from the app upon selecting target column) show the actual digit frequency against the expected frequency as predicted by Benford’s Law. The digits are plotted on the x axis and the frequency on the y axis, using a bar chart for expected frequency (Benford) and a line graph for the actual frequency.
+    As per the Chi-sq test on 7_2009 data column shows the Observed vs Expected do not match.<br/><br/>
+    <div class="bd-example" align="middle">
+        <img src="{{url_for('static', filename='obs_vs_exp.png')}}" align="middle" style="width:500px;height:550px;"/>
+    </div><br/>
+</p>
+
+3) Outputs back to the user a graph of the observed distribution of numbers with an overlay of the expected distribution of numbers. The output should also inform the user of whether the observed data matches the expected data distribution.<br/><br/><br/><br/>
+<p style="color: blue;">
+    The app can output interactive graph of observed distribution with an overlay of expected distribution of numbers and also runs statistical test to validate hypothesis.
+</p>
+
+The delivered package should contain a docker file that allows us to docker run the application and test the functionality directly.<br/>
+<p style="color: blue;">
+    The L7 Challenge app is deployed on Heroku and 
+</p>
+Bonus points for automated tests.
+
+Stretch challenge: persist the uploaded information to a database so a user can come to the application and browse through datasets uploaded by other users. No user authentication/user management is required here… assume anonymous users and public datasets.
+<p style="color: blue;">
+</p>
+
+</p>
+
+
+</div>
+
+
+{%endblock content%}

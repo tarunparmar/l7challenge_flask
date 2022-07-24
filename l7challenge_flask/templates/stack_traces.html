@@ -1,0 +1,189 @@
+{% extends 'layouts.html'%}
+
+{%block content%}
+<br/><br/>
+<div class="mx-auto" style="width: 1000px;">
+<p>
+Challenge: Python Stack Trace Interpretation <br/><br/>
+See the "Python Stack Traces" attachment which lists several python stack traces. Your task is to examine the stack traces and provide a brief response for each one that summarizes what the problem or likely problem is, and the first line of code you would jump to in your code editor given the trace.
+</p>
+
+
+<pre><code class="python">
+Traceback Problem 1
+===================
+Traceback (most recent call last):
+  File "stack_traces.py", line 36, in run_trace
+    f()
+  File "stack_traces.py", line 45, in <lambda>
+    run_trace(1, lambda: perform_calculation(add, '1', 3))
+  File "stack_traces.py", line 8, in perform_calculation
+    calc(x, y)
+  File "stack_traces.py", line 12, in add
+    return x + y
+TypeError: can only concatenate str (not "int") to str</code></pre>
+
+<p style="color:blue;">
+The values on the left and right-hand sides need to be of compatible types.<br/>
+One way to solve the error is to convert the integer to a string.<br/><br/><br/>
+</p>
+
+<pre><code class="python">
+Traceback Problem 2
+===================
+Traceback (most recent call last):
+  File "stack_traces.py", line 36, in run_trace
+    f()
+  File "stack_traces.py", line 46, in <lambda>
+    run_trace(2, lambda: perform_calculation(add, 7, '3'))
+  File "stack_traces.py", line 8, in perform_calculation
+    calc(x, y)
+  File "stack_traces.py", line 12, in add
+    return x + y
+TypeError: unsupported operand type(s) for +: 'int' and 'str'</code></pre>
+
+<p style="color:blue;">
+Error occurs when an integer value is added with a string that could contain a valid integer value. 
+You can add an integer number with a different number. You can’t add an integer with a string in Python.<br/><br/><br/>
+</p>
+
+<pre><code class="python">
+Traceback Problem 3
+===================
+Traceback (most recent call last):
+  File "stack_traces.py", line 36, in run_trace
+    f()
+  File "stack_traces.py", line 47, in <lambda>
+    run_trace(3, lambda: perform_calculation(mult, '3', '3'))
+  File "stack_traces.py", line 8, in perform_calculation
+    calc(x, y)
+  File "stack_traces.py", line 15, in mult
+    return x * y
+TypeError: can't multiply sequence by non-int of type 'str'</code></pre>
+
+<p style="color:blue;">
+Error occurs when we try to multiply a sequence (e.g. a string or a list) by a string. 
+To solve the error, convert the string to a float or an int<br/><br/><br/>
+</p>
+
+<pre><code class="python">
+Traceback Problem 4
+===================
+Traceback (most recent call last):
+  File "stack_traces.py", line 36, in run_trace
+    f()
+  File "stack_traces.py", line 48, in <lambda>
+    run_trace(4, lambda: perform_calculation(mult, [4], [3]))
+  File "stack_traces.py", line 8, in perform_calculation
+    calc(x, y)
+  File "stack_traces.py", line 15, in mult
+    return x * y
+TypeError: can't multiply sequence by non-int of type 'list'</code></pre>
+
+<p style="color:blue;">
+Error occurs when we try to multiply a sequence (e.g. a list or a string) by a list object. 
+To solve the error, correct the assignment to an int to be able to use the multiplication operator.<br/><br/><br/>
+</p>
+
+<pre><code class="python">
+Traceback Problem 5
+===================
+Traceback (most recent call last):
+  File "stack_traces.py", line 36, in run_trace
+    f()
+  File "stack_traces.py", line 49, in <lambda>
+    run_trace(5, lambda: perform_calculation(innoc, '1', 3))
+  File "stack_traces.py", line 8, in perform_calculation
+    calc(x, y)
+  File "stack_traces.py", line 22, in innoc
+    spelunk()
+  File "stack_traces.py", line 21, in spelunk
+    raise ValueError('Invalid')
+ValueError: Invalid</code></pre>
+
+<p style="color:blue;">
+ValueError in Python is raised when a user gives an invalid value to a function but is of a valid argument. 
+It usually occurs in mathematical operations that will require a certain kind of value, even when the value is the correct argument.<br/><br/><br/>
+</p>
+
+<pre><code class="python">
+Traceback Problem 6
+===================
+Traceback (most recent call last):
+  File "stack_traces.py", line 36, in run_trace
+    f()
+  File "stack_traces.py", line 50, in <lambda>
+    run_trace(6, lambda: comp_calc([1, 2, 3], 1, add))
+  File "stack_traces.py", line 30, in comp_calc
+    return [perform_calculation(calc, x_i, y_i) for x_i, y_i in zip(x, y)]
+TypeError: zip argument #2 must support iteration</code></pre>
+
+<p style="color:blue;">
+I think zip  takes 3 arguments e.g. zip(y, array_x, array_y) and there are only 2 provided<br/><br/><br/>
+</p>
+
+<pre><code class="python">
+Traceback Problem 7
+===================
+Traceback (most recent call last):
+  File "stack_traces.py", line 36, in run_trace
+    f()
+  File "stack_traces.py", line 51, in <lambda>
+    run_trace(7, lambda: comp_calc([1, 2, [3]], [4, 5, 6], add))
+  File "stack_traces.py", line 30, in comp_calc
+    return [perform_calculation(calc, x_i, y_i) for x_i, y_i in zip(x, y)]
+  File "stack_traces.py", line 30, in <listcomp>
+    return [perform_calculation(calc, x_i, y_i) for x_i, y_i in zip(x, y)]
+  File "stack_traces.py", line 8, in perform_calculation
+    calc(x, y)
+  File "stack_traces.py", line 12, in add
+    return x + y
+TypeError: can only concatenate list (not "int") to list</code></pre><br/><br/>
+
+<p style="color:blue;">
+If we perform the + operator between two list objects list_1 and list_2 it will return a new list object that will be a concatenation of list_1 and list_2.
+But if we perform the + operation between a list object and an integer value, we will receive the TypeError: can only concatenate list (not "int") to list Error.<br/><br/><br/>
+</p>
+
+<pre><code class="python">
+Traceback Problem 8
+===================
+Traceback (most recent call last):
+  File "stack_traces.py", line 36, in run_trace
+    f()
+  File "stack_traces.py", line 52, in <lambda>
+    run_trace(8, lambda: calc_dict({'one': 1, 'two': '2'}, 'one', 'two', add))
+  File "stack_traces.py", line 26, in calc_dict
+    return perform_calculation(calc, d[k1], d[k2])
+  File "stack_traces.py", line 8, in perform_calculation
+    calc(x, y)
+  File "stack_traces.py", line 12, in add
+    return x + y
+TypeError: unsupported operand type(s) for +: 'int' and 'str'</code></pre>
+
+<p style="color:blue;">
+Error occurs when an integer value is added with a string that could contain a valid integer value. 
+You can add an integer number with a different number. You can’t add an integer with a string in Python.<br/><br/><br/>
+</p>
+
+<pre><code class="python">
+Traceback Problem 9
+===================
+Traceback (most recent call last):
+  File "stack_traces.py", line 36, in run_trace
+    f()
+  File "stack_traces.py", line 53, in <lambda>
+    run_trace(9, lambda: calc_dict({}, 'one', 'two', add))
+  File "stack_traces.py", line 26, in calc_dict
+    return perform_calculation(calc, d[k1], d[k2])
+KeyError: 'one'</code></pre>
+
+<p style="color:blue;">
+Exception is caused when we try to access a 'one' key in a a dictionary that doesn't contain the key. 
+To solve the error, set the key in the dictionary before trying to access it or conditionally set it if it doesn't exist.
+</p>
+
+</div>
+
+
+{%endblock content%}
