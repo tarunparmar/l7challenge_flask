@@ -1,5 +1,7 @@
 # init a base image (Alpine is small Linux distro)
 FROM python:3.8
+# install tk
+RUN apt-get update && apt-get install tk-dev && rm -r /var/lib/apt/lists/*
 # define the present working directory
 WORKDIR /l7challenge_flask
 # copy the contents into the working dir
