@@ -1,1 +1,1 @@
-web: gunicorn l7challenge_flask:run
+web: gunicorn run:app
