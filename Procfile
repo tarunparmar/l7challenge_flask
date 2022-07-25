@@ -1,1 +1,1 @@
-web: gunicorn --bind 0.0.0.0:$PORT run:l7challenge_flask
+web: gunicorn l7challenge_flask:run
