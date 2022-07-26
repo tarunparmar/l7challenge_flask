@@ -47,23 +47,24 @@ The validation is done by Chi-Sq statistical test method to provide an easy way 
     </div><br/>
 </p>
 
-3) Outputs back to the user a graph of the observed distribution of numbers with an overlay of the expected distribution of numbers. The output should also inform the user of whether the observed data matches the expected data distribution.<br/><br/><br/><br/>
+3) Outputs back to the user a graph of the observed distribution of numbers with an overlay of the expected distribution of numbers. The output should also inform the user of whether the observed data matches the expected data distribution.<br/><br/>
 <p style="color: blue;">
     The app can output interactive graph of observed distribution with an overlay of expected distribution of numbers and also runs statistical test to validate hypothesis.
 </p>
 
 The delivered package should contain a docker file that allows us to docker run the application and test the functionality directly.<br/>
 <p style="color: blue;">
-    The L7 Challenge app is deployed on Heroku and 
+    The L7 Challenge app is deployed on Heroku and also has Dockerfile to run the code locally.
 </p>
 Bonus points for automated tests.
+<p style="color: blue;">
+    I have add test_app.py in Benford’s app to run two tests on how I made data output based on selected input column and 2nd test on chi-square function.
+</p>
 
 Stretch challenge: persist the uploaded information to a database so a user can come to the application and browse through datasets uploaded by other users. No user authentication/user management is required here… assume anonymous users and public datasets.
 <p style="color: blue;">
+    The app has a handful of built-in datasets and also allows user to upload a dataset of their own. 
 </p>
-
-</p>
-
 
 </div>
 
